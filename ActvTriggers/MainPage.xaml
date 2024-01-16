@@ -1,0 +1,61 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ActvTriggers.MainPage">
+    
+    
+            <!-- CAMBIA EL BACKGROUND CADA QUE SELECCIONAS EL ENTRY :D -->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                        <Setter Property="BackgroundColor" Value="Yellow" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--AL MOMENTO DE NO SELECCIONAR EL PLACEHOLDER NO SE ACTIVA EL BOTON XD -->
+
+            <Style TargetType="Button" >
+                <Style.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Source={x:Reference entry},
+                                           Path=Text.Length}"
+                                 Value="0">
+                        <Setter Property="IsEnabled" Value="False" />
+                        <Setter Property="BackgroundColor" Value="Green"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!-- AL MOMENTO DE SELECCIONAR EL RADIOBUTTON CAMBIA DE COLOR A AMARILLO -->
+
+            <Style TargetType="RadioButton">
+                <Style.Triggers>
+                    <Trigger TargetType="RadioButton" Property="IsChecked" Value="True">
+                        <Setter Property="BackgroundColor" Value="Yellow" />
+                        <Setter Property="TextColor" Value="Black" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout>
+            
+            <Entry x:Name="entry"
+                   Text=""
+                   Placeholder="ESCRIBE ALGO PARA ACTIVAR" />
+
+            <Button x:Name="button" Text="uwu"
+                    FontSize="Body"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Red">
+            </Button>
+
+            <RadioButton Content="PIZZA" />
+            <RadioButton Content="TACOS" />
+            <RadioButton Content="HAMBURGUESA" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
